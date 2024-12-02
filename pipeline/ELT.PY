@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 import io
 from tqdm import tqdm
-
+import logging
 
 class DatabaseMigration:
     def __init__(self):
@@ -28,6 +28,10 @@ class DatabaseMigration:
 
         # Certificar que o schema temporário existe no PostgreSQL
         self.ensure_temporary_schema()
+
+        # Configuração de logging
+        logging.basicConfig(filename='migration.log', level=logging.INFO,
+                            format='%(asctime)s - %(levelname)s - %(message)s')
 
     def ensure_temporary_schema(self):
         with self.engine.connect() as connection:
@@ -52,7 +56,6 @@ class DatabaseMigration:
     def sanitize_dataframe(self, df):
         # Remover caracteres nulos (0x00) em células de texto, mantendo valores NULL inalterados
         return df.apply(lambda col: col.map(lambda x: x.replace('\x00', '') if isinstance(x, str) else x))
-
 
     def load_data_using_copy(self, df, table_name):
         df = self.sanitize_dataframe(df)  # Remover caracteres nulos
@@ -92,24 +95,33 @@ class DatabaseMigration:
         cursor.close()
         conn.close()
 
-    def count_records(self, table_name):
+    def get_last_processed_row_count(self, table_name):
+        try:
+            with open(f'{table_name}_last_processed.txt', 'r') as file:
+                last_processed = int(file.read().strip())
+            return last_processed
+        except FileNotFoundError:
+            return 0
+
+    def update_last_processed_row_count(self, table_name, last_row_count):
+        with open(f'{table_name}_last_processed.txt', 'w') as file:
+            file.write(str(last_row_count))
+
+    def extract_and_load_data_in_chunks(self, table_name, block_size=10000):
+        last_processed_row_count = self.get_last_processed_row_count(table_name)
+        
         with firebirdsql.connect(**self.firebird_config) as conn:
             cursor = conn.cursor()
             cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
-            count = cursor.fetchone()[0]
-        return count
+            total_records = cursor.fetchone()[0]
 
-    def extract_and_load_data_in_chunks(self, table_name, block_size=10000):
-        total_records = self.count_records(table_name)
-        with firebirdsql.connect(**self.firebird_config) as conn:
-            cursor = conn.cursor()
             cursor.execute(f"SELECT * FROM {table_name} ROWS 1 TO 1")  # pegar cabeçalhos
             columns = [desc[0].strip() for desc in cursor.description]
 
         self.create_table_in_postgres(table_name, columns)
 
-        offset = 0
-        with tqdm(total=total_records, desc=f"Carregando dados de {table_name}") as pbar:
+        offset = last_processed_row_count
+        with tqdm(total=total_records - last_processed_row_count, desc=f"Carregando dados de {table_name}") as pbar:
             while offset < total_records:
                 with firebirdsql.connect(**self.firebird_config) as conn:
                     cursor = conn.cursor()
@@ -117,11 +129,16 @@ class DatabaseMigration:
                     cursor.execute(paginated_query)
                     rows = cursor.fetchall()
 
+                    if not rows:
+                        break
+
                     df = pd.DataFrame(rows, columns=columns)
                     self.load_data_using_copy(df, table_name)
 
                     offset += len(rows)
                     pbar.update(len(rows))
+
+        self.update_last_processed_row_count(table_name, offset)
 
     def run_migration(self, tables_to_load):
         available_tables = self.list_firebird_tables()
@@ -138,5 +155,41 @@ class DatabaseMigration:
 
 if __name__ == "__main__":
     migration = DatabaseMigration()
-    tables_to_load = ["FC11000"]
+    # Lista de todas as tabelas a serem carregadas diariamente
+    tables_to_load = [
+        "FC31100",
+        "FC0H100",
+        "FC0D100",
+        "FC0D000",
+        "FC01000",
+        "FC02000",
+        "FC02200",
+        "FC02300",
+        "FC03000",
+        "FC03100",
+        "FC03140",
+        "FC03160",
+        "FC03190",
+        "FC04000",
+        "FC04300",
+        "FC05900",
+        "FC05910",
+        "FC07000",
+        "FC07100",
+        "FC1B100",
+        "FC11000",
+        "FC11100",
+        "FC12100",
+        "FC12110",
+        "FC13000",
+        "FC13100",
+        "FC15000",
+        "FC15100",
+        "FC15110",
+        "FC16000",
+        "FC31110",
+        "FC31111",
+        "FC31200",
+        "FC32110"
+    ]
     migration.run_migration(tables_to_load)

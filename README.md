@@ -65,12 +65,12 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
   # Propostas de Novos design do Dashboard:
 
   Modelo 1 :
-
+[modelo1]
 
 
   Modelo 2:
 
-  
+  [modelo 2]
 
 # Conclusão:
 

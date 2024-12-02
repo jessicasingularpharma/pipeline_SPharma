@@ -1,4 +1,8 @@
-﻿# Pipeline de dados Singular Pharma
+![Processo Atual](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/pipeline-singular%20pharma)
+ 
+ 
+ 
+ # Pipeline de dados Singular Pharma
 
  Este documento apresenta o projeto de pipeline de dados desenvolvido para a Singular Pharma, cujo objetivo é integrar dados da fonte, realizar transformações, e carregar dados processados em um data warehouse.
 
@@ -55,6 +59,18 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
 - Escalabilidade: Melhorar a escalabilidade para lidar com maiores volumes de dados.
 
 - Monitoramento: Implementar ferramentas de monitoramento para garantir a integridade contínua dos dados.
+
+- Construção do Dashboard no Power BI com foco em Compras.
+
+  # Propostas de Novos design do Dashboard:
+
+  Modelo 1 :
+
+
+
+  Modelo 2:
+
+  
 
 # Conclusão:
 

@@ -63,17 +63,48 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
 - Construção do Dashboard no Power BI com foco em Compras.
 
 
-  # Propostas de Novos design do Dashboard:
+  # Design do Dashboard de Compras:
 
-  O layout do novo Dashboard de compras, conta com 4 paginas para Analise:
+  #### O dashboard será composto por quatro páginas principais, otimizadas para análise estratégica e operacional:
 
-  - Primeira pagina, de Visão Geral, que possui `informações gerais de compras por Materia Prima, Embalagem, Porcentagem de compras por Fornecedor e valor total de compras por mês`.
-   
-   - A Segunda pagina é a de Financeiro que tera Os KPIS de Valores, como `Quantidade gasta por ano, mes(ou dia) de materia prima, considerando KG, G, CAP a depender do produto.`  `Valor Médio de Compras por Produto` 
+
+
+ 1- **Visão Geral**
+  
+ -  Informações consolidadas:
+ - Compras por tipo (Matéria-prima, Embalagem, Revenda e Outros).
+ - Distribuição por fornecedor (% de compras).
+ - Valores totais de compras por mês.
+
+
+  2-  **Financeiro**
+  
+    - Indicadores-chave (KPIs):
       
-   - A Terceira Pagina será referente a Analises de cada produto, contendo KPIS que quantificam, ´Quantidade Comprada por Período`, Todos os produtos comprados contendo `Valor unitario`, `Numero de Nota fiscal`, `Valor total de Compra do produto`, `Grupo`, `Curva` e `data de entrada do produto` e O cmv Em Categorias.
+      - Valores gastos por ano, mês e dia.
+     - Valor médio de compras por produto.
+     - Quantidade comprada em diferentes unidades (kg, g, etc.).
  
-   - A Quarta e Ultima Pagina sera referente  A fornecedores, Contendo produtos de Cada Fornecedores, permitindo analise individual de produto por cada CNPJ. O Lead Time Médio de Compra para analisar o tempo medio entre as datas de entregas dos produtos e a quantidade de compras por Fornecedor.
+
+  3- **Análise de Produtos**
+    
+ -  KPIs detalhados:
+   - Quantidade comprada por período.
+   - Informações por produto:
+   - Valor unitário e total.
+   - Número da nota fiscal.
+   - Grupo e curva de consumo.
+   - Data de entrada no estoque.
+   -  Custo das Mercadorias Vendidas (CMV), categorizado.
+   
+ 
+   4-  **Fornecedores**
+ 
+- Análise por fornecedor:
+- Produtos fornecidos por CNPJ.
+- Lead Time médio (tempo entre pedido e entrega).
+- Quantidade de compras por fornecedor.
+  
  
  #### Paginas do Dashboard que estão em Andamento:
 
@@ -87,4 +118,6 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
 
 # Conclusão:
 
-Este projeto de pipeline de dados oferece uma solução robusta para a integração, transformação e visualização de dados na Singular Pharma, trazendo benefícios significativos em termos de eficiência e qualidade dos dados, permitindo ter uma analise Historia e e Diária.
+O pipeline de dados implementado para a Singular Pharma proporciona uma solução robusta e escalável para integração, processamento e visualização de dados. Com isso, a organização pode realizar análises precisas e rápidas, suportando decisões baseadas em dados confiáveis, seja em análises históricas ou operacionais diárias.
+
+**Próximo impacto esperado: otimização contínua para atender às demandas crescentes de dados e análise.**

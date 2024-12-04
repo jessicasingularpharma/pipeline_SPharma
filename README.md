@@ -64,13 +64,13 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
 
   # Propostas de Novos design do Dashboard:
 
-  Modelo 1 :
-[modelo1]
+  Pagina de Exemplo :
+![modelo1](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/dashboard-modelo.PNG)
 
 
-  Modelo 2:
+  Pagina Exemplo 2:
 
-  [modelo 2]
+  ![modelo 2](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/modelo%20dashboard.PNG)
 
 # Conclusão:
 

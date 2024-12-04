@@ -54,7 +54,7 @@ Execução: O pipeline pode ser executado automaticamente usando o Apache Airflo
 O pipeline de dados melhora significativamente a eficiência do processamento de dados, garante a integridade dos dados e facilita a análise e visualização de dados no Power BI.
 
 
-# Proximos Passos
+# Proximos Passos(Em Andamento)
 
 - Escalabilidade: Melhorar a escalabilidade para lidar com maiores volumes de dados.
 
@@ -62,10 +62,23 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
 
 - Construção do Dashboard no Power BI com foco em Compras.
 
+
   # Propostas de Novos design do Dashboard:
 
+  O layout do novo Dashboard de compras, conta com 4 paginas para Analise:
+
+  - Primeira pagina, de Visão Geral, que possui `informações gerais de compras por Materia Prima, Embalagem, Porcentagem de compras por Fornecedor e valor total de compras por mês`.
+   
+   - A Segunda pagina é a de Financeiro que tera Os KPIS de Valores, como `Quantidade gasta por ano, mes(ou dia) de materia prima, considerando KG, G, CAP a depender do produto.`  `Valor Médio de Compras por Produto` 
+      
+   - A Terceira Pagina será referente a Analises de cada produto, contendo KPIS que quantificam, ´Quantidade Comprada por Período`, Todos os produtos comprados contendo `Valor unitario`, `Numero de Nota fiscal`, `Valor total de Compra do produto`, `Grupo`, `Curva` e `data de entrada do produto` e O cmv Em Categorias.
+ 
+   - A Quarta e Ultima Pagina sera referente  A fornecedores, Contendo produtos de Cada Fornecedores, permitindo analise individual de produto por cada CNPJ. O Lead Time Médio de Compra para analisar o tempo medio entre as datas de entregas dos produtos e a quantidade de compras por Fornecedor.
+ 
+ #### Paginas do Dashboard que estão em Andamento:
+
   Pagina de Exemplo :
-![modelo1](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/dashboard-modelo.PNG)
+  ![modelo1](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/dashboard-modelo.PNG)
 
 
   Pagina Exemplo 2:
@@ -74,4 +87,4 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
 
 # Conclusão:
 
-Este projeto de pipeline de dados oferece uma solução robusta para a integração, transformação e visualização de dados na Singular Pharma, trazendo benefícios significativos em termos de eficiência e qualidade dos dados.
+Este projeto de pipeline de dados oferece uma solução robusta para a integração, transformação e visualização de dados na Singular Pharma, trazendo benefícios significativos em termos de eficiência e qualidade dos dados, permitindo ter uma analise Historia e e Diária.

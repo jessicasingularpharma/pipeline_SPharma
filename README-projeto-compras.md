@@ -109,6 +109,7 @@ O pipeline de dados melhora significativamente a eficiência do processamento de
  #### Paginas do Dashboard que estão em Andamento:
 
   Pagina de Exemplo :
+  
   ![modelo1](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/dashboard-modelo.PNG)
 
 

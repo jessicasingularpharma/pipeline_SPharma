@@ -1,4 +1,8 @@
-﻿# Pipeline de dados Singular Pharma
+![Processo Atual](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/pipeline-singular%20pharma)
+ 
+ 
+ 
+ # Pipeline de dados Singular Pharma
 
  Este documento apresenta o projeto de pipeline de dados desenvolvido para a Singular Pharma, cujo objetivo é integrar dados da fonte, realizar transformações, e carregar dados processados em um data warehouse.
 
@@ -50,12 +54,71 @@ Execução: O pipeline pode ser executado automaticamente usando o Apache Airflo
 O pipeline de dados melhora significativamente a eficiência do processamento de dados, garante a integridade dos dados e facilita a análise e visualização de dados no Power BI.
 
 
-# Proximos Passos
+# Proximos Passos(Em Andamento)
 
 - Escalabilidade: Melhorar a escalabilidade para lidar com maiores volumes de dados.
 
 - Monitoramento: Implementar ferramentas de monitoramento para garantir a integridade contínua dos dados.
 
+- Construção do Dashboard no Power BI com foco em Compras.
+
+
+  # Design do Dashboard de Compras:
+
+  #### O dashboard será composto por quatro páginas principais, otimizadas para análise estratégica e operacional:
+
+
+
+ 1- **Visão Geral**
+  
+ -  Informações consolidadas:
+ - Compras por tipo (Matéria-prima, Embalagem, Revenda e Outros).
+ - Distribuição por fornecedor (% de compras).
+ - Valores totais de compras por mês.
+
+
+  2-  **Financeiro**
+  
+    - Indicadores-chave (KPIs):
+      
+      - Valores gastos por ano, mês e dia.
+     - Valor médio de compras por produto.
+     - Quantidade comprada em diferentes unidades (kg, g, etc.).
+ 
+
+  3- **Análise de Produtos**
+    
+ -  KPIs detalhados:
+   - Quantidade comprada por período.
+   - Informações por produto:
+   - Valor unitário e total.
+   - Número da nota fiscal.
+   - Grupo e curva de consumo.
+   - Data de entrada no estoque.
+   -  Custo das Mercadorias Vendidas (CMV), categorizado.
+   
+ 
+   4-  **Fornecedores**
+ 
+- Análise por fornecedor:
+- Produtos fornecidos por CNPJ.
+- Lead Time médio (tempo entre pedido e entrega).
+- Quantidade de compras por fornecedor.
+  
+ 
+ #### Paginas do Dashboard que estão em Andamento:
+
+  Pagina de Exemplo :
+  
+  ![modelo1](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/dashboard-modelo.PNG)
+
+
+  Pagina Exemplo 2:
+
+  ![modelo 2](https://github.com/jessicasingularpharma/pipeline_SPharma/blob/main/modelo%20dashboard.PNG)
+
 # Conclusão:
 
-Este projeto de pipeline de dados oferece uma solução robusta para a integração, transformação e visualização de dados na Singular Pharma, trazendo benefícios significativos em termos de eficiência e qualidade dos dados.
+O pipeline de dados implementado para a Singular Pharma proporciona uma solução robusta e escalável para integração, processamento e visualização de dados. Com isso, a organização pode realizar análises precisas e rápidas, suportando decisões baseadas em dados confiáveis, seja em análises históricas ou operacionais diárias.
+
+**Próximo impacto esperado: otimização contínua para atender às demandas crescentes de dados e análise.**

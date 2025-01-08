@@ -1,0 +1,126 @@
+CREATE TABLE gold."componentesdasformulas_merged" (
+    "CDFIL" varchar(50),
+    "NRRQU" varchar(50),
+    "SERIER" varchar(50),
+    "ITEMID" varchar(50),
+    "TPCMP" varchar(5),
+    "CDPRO" varchar(50),
+    "CDPRIN" varchar(50),
+    "DESCR" text,
+    "QUANT" numeric,
+    "UNIDA" varchar(10),
+    "VRCMP" numeric,
+    "QTREAL" numeric,
+    "VOLAPA" numeric,
+    "NRLOT" varchar(50),
+    "CDFILE" varchar(50),
+    "DTENTR" date,
+    "TPFORMAFARMA" varchar(50),
+    "DILUI" numeric,
+    "DENSI" numeric,
+    "CTLOT" varchar(50),
+    "FLAGATU" varchar(5),
+    "PRCUSTO" numeric,
+    "VRCMPORI" numeric,
+    "QTREALORI" numeric,
+    "VOLAPAORI" numeric,
+    "QUANTHP" numeric,
+    "UNIDAPRD" varchar(10),
+    "QTREALUNI" numeric,
+    "FLAGENV" varchar(5),
+    "TEOR" numeric,
+    "QTUTR" numeric,
+    "QTUI" numeric,
+    "QTBLH" numeric,
+    "QTMLH" numeric,
+    "PRCOMPRA" numeric
+);
+
+
+INSERT INTO gold."componentesdasformulas_merged" (
+    "CDFIL",
+    "NRRQU",
+    "SERIER",
+    "ITEMID",
+    "TPCMP",
+    "CDPRO",
+    "CDPRIN",
+    "DESCR",
+    "QUANT",
+    "UNIDA",
+    "VRCMP",
+    "QTREAL",
+    "VOLAPA",
+    "NRLOT",
+    "CDFILE",
+    "DTENTR",
+    "TPFORMAFARMA",
+    "DILUI",
+    "DENSI",
+    "CTLOT",
+    "FLAGATU",
+    "PRCUSTO",
+    "VRCMPORI",
+    "QTREALORI",
+    "VOLAPAORI",
+    "QUANTHP",
+    "UNIDAPRD",
+    "QTREALUNI",
+    "FLAGENV",
+    "TEOR",
+    "QTUTR",
+    "QTUI",
+    "QTBLH",
+    "QTMLH",
+    "PRCOMPRA"
+)
+SELECT 
+    item."CDFIL", 
+    item."NRRQU", 
+    item."SERIER", 
+    item."ITEMID", 
+    item."TPCMP", 
+    item."CDPRO", 
+    item."CDPRIN", 
+    item."DESCR", 
+    item."QUANT", 
+    item."UNIDA", 
+    item."VRCMP", 
+    item."QTREAL", 
+    item."VOLAPA", 
+    item."NRLOT", 
+    item."CDFILE", 
+    item."DTENTR", 
+    item."TPFORMAFARMA", 
+    item."DILUI", 
+    item."DENSI", 
+    item."CTLOT", 
+    item."FLAGATU", 
+    item."PRCUSTO", 
+    item."VRCMPORI", 
+    item."QTREALORI", 
+    item."VOLAPAORI", 
+    item."QUANTHP", 
+    item."UNIDAPRD", 
+    item."QTREALUNI", 
+    item."FLAGENV", 
+    item."TEOR", 
+    item."QTUTR", 
+    item."QTUI", 
+    item."QTBLH", 
+    item."QTMLH", 
+    item."PRCOMPRA"
+FROM 
+    "silver"."componentesdasformulas" item
+LEFT JOIN 
+    "silver"."produtos" prod ON prod."CDPRO" = item."CDPRO"::integer
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM gold."componentesdasformulas_merged" existing
+    WHERE existing."CDFIL" = item."CDFIL"
+      AND existing."NRRQU" = item."NRRQU"
+      AND existing."SERIER" = item."SERIER"
+      AND existing."ITEMID" = item."ITEMID"
+)
+ORDER BY 
+    item."ITEMID";

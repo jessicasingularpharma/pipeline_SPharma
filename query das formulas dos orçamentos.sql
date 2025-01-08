@@ -1,0 +1,69 @@
+CREATE TABLE IF NOT EXISTS gold.formuladosorcamentos
+(
+    "CDFIL" VARCHAR,
+    "NRORC" VARCHAR,
+    "SERIEO" VARCHAR,
+    "PFCRM" VARCHAR,
+    "UFCRM" VARCHAR,
+    "NRCRM" VARCHAR,
+    "VOLUME" NUMERIC(18, 2),
+    "UNIVOL" VARCHAR,
+    "TPCAP" VARCHAR,
+    "QTFOR" NUMERIC(18, 2),
+    "QTCONT" NUMERIC(18, 2),
+    "ROTULOID" VARCHAR,
+    "PRCOBR" NUMERIC(18, 2),
+    "PTTXA" NUMERIC(18, 2),
+    "VRTXA" NUMERIC(18, 2),
+    "PTDSC" NUMERIC(18, 2),
+    "VRDSC" NUMERIC(18, 2),
+    "PRREAL" NUMERIC(18, 2),
+    "DTRET" DATE,
+    "PRCUSTO" NUMERIC(18, 2),
+    "QTAPROV" NUMERIC(18, 2),
+    "CDEMB" VARCHAR,
+    "DTENTR" DATE,
+    "DTCAD" DATE,
+    "VOLUMEORI" NUMERIC(18, 2),
+    "DTVAL" DATE,
+    "CDCLI" VARCHAR,
+    "NOMEPA" VARCHAR,
+    "GRUPOTERAP" VARCHAR,
+    "PRCOMPRA" NUMERIC(18, 2),
+    "QTPRESCR" NUMERIC(18, 2),
+    "INDUSOCONT" BOOLEAN,
+    "TPFORMAFARMA" VARCHAR
+);
+
+INSERT INTO gold.formuladosorcamentos (
+    "CDFIL", "NRORC", "SERIEO", "PFCRM", "UFCRM", "NRCRM", "VOLUME", "UNIVOL", "TPCAP", "QTFOR", 
+    "QTCONT", "ROTULOID", "PRCOBR", "PTTXA", "VRTXA", "PTDSC", "VRDSC", "PRREAL", "DTRET", "PRCUSTO", 
+    "QTAPROV", "CDEMB", "DTENTR", "DTCAD", "VOLUMEORI", "DTVAL", "CDCLI", "NOMEPA", "GRUPOTERAP", 
+    "PRCOMPRA", "QTPRESCR", "INDUSOCONT", "TPFORMAFARMA"
+)
+SELECT 
+    temp."CDFIL", temp."NRORC", temp."SERIEO", temp."PFCRM", temp."UFCRM", temp."NRCRM", 
+    CAST(temp."VOLUME" AS NUMERIC(18, 2)), temp."UNIVOL", temp."TPCAP", CAST(temp."QTFOR" AS NUMERIC(18, 2)), 
+    CAST(temp."QTCONT" AS NUMERIC(18, 2)), temp."ROTULOID", CAST(temp."PRCOBR" AS NUMERIC(18, 2)), 
+    CAST(temp."PTTXA" AS NUMERIC(18, 2)), CAST(temp."VRTXA" AS NUMERIC(18, 2)), CAST(temp."PTDSC" AS NUMERIC(18, 2)), 
+    CAST(temp."VRDSC" AS NUMERIC(18, 2)), CAST(temp."PRREAL" AS NUMERIC(18, 2)), CAST(temp."DTRET" AS DATE), 
+    CAST(temp."PRCUSTO" AS NUMERIC(18, 2)), CAST(temp."QTAPROV" AS NUMERIC(18, 2)), temp."CDEMB", 
+    CAST(temp."DTENTR" AS DATE), CAST(temp."DTCAD" AS DATE), CAST(temp."VOLUMEORI" AS NUMERIC(18, 2)), 
+    CAST(temp."DTVAL" AS DATE), temp."CDCLI", temp."NOMEPA", temp."GRUPOTERAP", CAST(temp."PRCOMPRA" AS NUMERIC(18, 2)), 
+    CAST(temp."QTPRESCR" AS NUMERIC(18, 2)), 
+    CASE WHEN temp."INDUSOCONT" = 'S' THEN TRUE ELSE FALSE END, 
+    temp."TPFORMAFARMA"
+FROM temporary."FC15100" temp
+WHERE NOT EXISTS (
+    SELECT 1 
+    FROM gold.formuladosorcamentos tgt 
+    WHERE tgt."CDFIL" = temp."CDFIL"
+      AND tgt."NRORC" = temp."NRORC"
+      AND tgt."SERIEO" = temp."SERIEO"
+      AND tgt."PFCRM" = temp."PFCRM"
+      AND tgt."UFCRM" = temp."UFCRM"
+      AND tgt."NRCRM" = temp."NRCRM"
+      AND tgt."DTENTR" = CAST(temp."DTENTR" AS DATE)
+);
+
+

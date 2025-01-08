@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - schema: temporary  # Nome do schema de origem
+    tables:
+      - name: "FC03000"
+      - name: "FC02000"
+      - name: "FC11000"
+      - name: "FC11100"
+      - name: "FC07000"
+      - name: "FC31100"
+      - name: "FC31110"  # Nome da tabela que você deseja usar

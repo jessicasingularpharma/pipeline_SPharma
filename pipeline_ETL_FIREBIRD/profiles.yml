@@ -1,0 +1,24 @@
+pipeline_ETL_FIREBIRD:
+  outputs:
+    dev:
+      dbname: supply_chain
+      host: localhost
+      pass: '1234'
+      port: 5432
+      schema: gold
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev
+pipeline_ETL_FIREBIRD:
+  outputs:
+    dev:
+      dbname: supply_chain
+      host: localhost
+      pass: '1234'
+      port: 5432
+      schema: gold
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev

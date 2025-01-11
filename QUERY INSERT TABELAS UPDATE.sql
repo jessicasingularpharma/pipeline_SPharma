@@ -317,6 +317,18 @@ WHERE NOT EXISTS (
     WHERE silver.fornecedores.FORNECID = CAST(temporary."FC02000"."FORNECID" AS INTEGER)
 );
 
+INSERT INTO gold.fornecedores (fornecid, razao, nrcnpj, fanta, munic, unfed)
+SELECT DISTINCT
+    s.fornecid,
+    s.razao,
+    s.nrcnpj,
+    s.fanta,
+    s.munic,
+    s.unfed
+FROM silver.fornecedores s
+LEFT JOIN gold.fornecedores g
+ON s.fornecid = g.fornecid
+WHERE g.fornecid IS NULL;
 
 -------INSERT SILVER E GOLD TABELA PRODUTOS---------------
 
